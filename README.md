@@ -1,2 +1,2 @@
-# rn-messenger-app
-Messenger App based on Facebook messenger.
+# Messenger App
+Messenger App based on Facebook messenger built with React Native.
