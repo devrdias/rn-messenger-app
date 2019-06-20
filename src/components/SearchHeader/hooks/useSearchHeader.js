@@ -1,26 +1,49 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import NavigationService from '../../../services/NavigationService';
 
 const useSearchHeader = () => {
-  const { searchQuery, setSearchQuery } = useState();
-  const { isFocused, setIsFocused } = useState(false);
-  const inputRef = useRef();
+  const [searchQuery, setSearchQuery] = useState();
+  const [isFocused, setIsFocused] = useState(false);
+  const inputEl = useRef(null);
 
   useEffect(() => {
     if (isFocused) {
-      inputRef.current.focus();
+      if (inputEl.current) {
+        inputEl.current.focus();
+      }
     }
   }, [isFocused]);
 
   const handleOnFocus = () => {
     setIsFocused(true);
+
+    NavigationService.navigate('SearchScreen');
+    setTimeout(() => {
+      if (inputEl.current) {
+        inputEl.current.focus();
+      }
+    }, 240);
   };
 
   const handleOnBlur = () => {
     setIsFocused(false);
   };
 
-  const handleOnChangeValue = fieldName => (text) => {
-    setSearchQuery({ [fieldName]: text });
+  const handleOnChangeValue = (text) => {
+    setSearchQuery(text);
+  };
+
+  const handleOnPress = () => {
+    if (isFocused) {
+      setIsFocused(false);
+      NavigationService.goBack();
+    } else {
+      handleOnFocus();
+    }
+  };
+
+  const handleOnSearch = () => {
+    console.log('handleOnSearch');
   };
 
   return {
@@ -29,7 +52,10 @@ const useSearchHeader = () => {
     isFocused,
     handleOnFocus,
     handleOnBlur,
-    inputRef,
+    handleOnPress,
+    handleOnSearch,
+    inputEl,
   };
 };
+
 export default useSearchHeader;

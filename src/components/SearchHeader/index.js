@@ -14,57 +14,29 @@ export default function SearchHeader() {
     isFocused,
     handleOnFocus,
     handleOnBlur,
-    inputRef,
+    handleOnPress,
+    handleOnSearch,
+    inputEl,
   } = useSearchHeader();
-
-  //   const onFocus = () => {
-  //     this.setState(
-  //       {
-  //         isFocused: true,
-  //       },
-  //       () => {
-  //         this.props.navigation.navigate('SearchScreen');
-  //         setTimeout(() => {
-  //           this.searchTextInput.focus();
-  //         }, 240);
-  //       },
-  //     );
-  //   };
-
-  //   const onBlur = () => {
-  //     this.setState({
-  //       isFocused: false,
-  //     });
-  //   };
-
-  //   const onPress = () => {
-  //     if (isFocused) {
-  //       this.setState({
-  //         isFocused: false,
-  //       });
-  //       this.props.navigation.pop();
-  //     } else {
-  //       this.onFocus();
-  //     }
-  //   };
 
   // const activeScreen = this.props.navigation.state.routes[this.props.navigation.state.index]
   //   .routeName;
 
   const activeScreen = 'HomeScreen';
-  console.log('TCL: getStatusBarHeight', getStatusBarHeight());
+  console.log('TCL: SearchHeader -> isFocused,', isFocused);
+  console.log('TCL: SearchHeader -> searchQuery', searchQuery);
   return (
     <View style={activeScreen === 'HomeScreen' ? styles.container : styles.elevatedContainer}>
       <FBStatusBar backgroundColor="black" barStyle="light-content" />
       {isFocused ? (
         <Appbar.Header style={styles.toolbar}>
           <Searchbar
-            ref={inputRef}
+            ref={inputEl}
             style={styles.searchbar}
             placeholder="Search"
             icon={Platform.OS === 'ios' ? 'keyboard-arrow-left' : 'arrow-back'}
-            onIconPress={() => {}}
-            onChangeText={handleOnChangeValue(query)}
+            onIconPress={handleOnPress}
+            onChangeText={handleOnChangeValue}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             value={searchQuery}
@@ -72,11 +44,11 @@ export default function SearchHeader() {
         </Appbar.Header>
       ) : (
         <Appbar.Header style={styles.toolbar}>
-          <Appbar.Action icon="search" onPress={() => {}} />
-          <TouchableOpacity style={styles.btn} onPress={() => {}}>
+          <Appbar.Action icon="search" onPress={handleOnPress} />
+          <TouchableOpacity style={styles.btn} onPress={handleOnPress}>
             <Text style={styles.btnText}>Search</Text>
           </TouchableOpacity>
-          <Appbar.Action icon="face" onPress={this._onSearch} />
+          <Appbar.Action icon="face" onPress={handleOnSearch} />
         </Appbar.Header>
       )}
     </View>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, Content, Text } from './styles';
 
-export default function Camera() {
+export default function Search() {
   return (
     <Container>
       <Content>
-        <Text>Camera Screen</Text>
+        <Text>Search Screen</Text>
       </Content>
     </Container>
   );

@@ -3,7 +3,6 @@ import AppStyles from '../../config/styles';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${AppStyles.colors.lightWhite};
 `;
 
 export const Content = styled.View`

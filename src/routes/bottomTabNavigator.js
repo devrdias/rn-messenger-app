@@ -2,10 +2,10 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
 import TabIcon from '../components/TabIcon';
 import HomeTabNavigation from './homeTabNavigator';
-import FriendsScreen from '../containers/Friends/index';
-import CameraScreen from '../containers/Camera/index';
-import GamesScreen from '../containers/Games/index';
-import PopularScreen from '../containers/Popular/index';
+import FriendsScreen from '../containers/Friends';
+import CameraScreen from '../containers/CameraScreen';
+import GamesScreen from '../containers/Games';
+import PopularScreen from '../containers/Popular';
 import AppStyles from '../config/styles';
 import NavigationService from '../services/NavigationService';
 

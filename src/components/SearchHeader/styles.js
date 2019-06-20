@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 import AppStyles from '../../config/styles';
 
 const styles = StyleSheet.create({
   container: {
-    // height: getStatusBarHeight(),
+    height: isIphoneX() ? 55 : null,
     backgroundColor: AppStyles.colors.black,
     justifyContent: 'flex-end',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: AppStyles.colors.separator,
   },
   elevatedContainer: {
-    // height: getStatusBarHeight(),
+    height: isIphoneX() ? 55 : null,
     backgroundColor: AppStyles.colors.black,
     justifyContent: 'flex-end',
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     height: 40,
     paddingHorizontal: 10,
     fontSize: 16,
-    // TODO: install fonts
     // fontFamily: AppStyles.fonts.FONT_REGULAR,
   },
   btn: {
@@ -47,9 +46,8 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 16,
-    // TODO: install fonts
     // fontFamily: AppStyles.fonts.FONT_REGULAR,
-    color: '#7f8c8d',
+    color: AppStyles.colors.lightGreyColor,
   },
 });
 
